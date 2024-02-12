@@ -43,6 +43,21 @@ class LoginViewTestCase(TestCase):
         self.assertEqual(resp.status_code, 302)  # 302 is the status code for a redirect
         self.assertEqual(resp.headers['Location'], '/')  # Adjust the URL as needed
 
+###Take a look at this one....
+    def test_unsuccessful_signup_success(self):
+        # Test a successful signup
+
+        with self.client:
+            resp= self.client.post('/signup', data={
+            'username': 'newtestuser',
+            
+            'image_url': None
+            })
+
+        # Check if the user was redirected to the home page or the URL you expect
+        self.assertEqual(resp.status_code, 500)  # 302 is the status code for a redirect
+        self.assertEqual(resp.headers['Location'], '/')  # Adjust the URL as needed
+
 class UserViewTestCase(TestCase):
      def setUp(self):
         """Create test client"""
